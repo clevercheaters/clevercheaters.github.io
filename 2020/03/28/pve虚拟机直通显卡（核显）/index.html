@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTly1gd9qxl196fj30xo0b8gmo.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTly1gd9r01f5atj312u0u04dn.jpg">
 <meta property="article:published_time" content="2020-03-28T15:47:00.000Z">
-<meta property="article:modified_time" content="2020-03-28T17:06:38.697Z">
+<meta property="article:modified_time" content="2020-03-28T17:16:13.786Z">
 <meta property="article:author" content="llowoll">
 <meta property="article:tag" content="pve直通">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-29 01:06:38" itemprop="dateModified" datetime="2020-03-29T01:06:38+08:00">2020-03-29</time>
+                <time title="修改时间：2020-03-29 01:16:13" itemprop="dateModified" datetime="2020-03-29T01:16:13+08:00">2020-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -278,23 +278,24 @@
         <p>pve的直通教程，其实适用于支持pci设备的各种直通，包括声卡、网卡、显卡，只是在设置上面会有所不同，这里主要讲的是pve的核显直通，独显直通也可以依照这个教程来做。具体步骤：</p>
 <h6 id="1-PVE的内核开启支持VD-T直通的IOMMU及相关模块"><a href="#1-PVE的内核开启支持VD-T直通的IOMMU及相关模块" class="headerlink" title="1.PVE的内核开启支持VD-T直通的IOMMU及相关模块"></a>1.PVE的内核开启支持VD-T直通的IOMMU及相关模块</h6><p>这里不做具体的进入pve的介绍，shell工具有很多，自己去用用看就知道哪个好了！！！<br>修改文件位于：/etc/default/grub</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/<span class="keyword">default</span>/grub <span class="meta">#进入grub文件编辑</span></span><br></pre></td></tr></table></figure>
-<p>将原内容：<br>GRUB_CMDLINE_LINUX_DEFAULT=”quiet”<br>改为<br>GRUB_CMDLINE_LINUX_DEFAULT=”quiet intel_iommu=on video=efifb:off”(我的是intel的cpu，如果你用amd，把intel改成amd)<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9plqfch3j30sy17wqbm.jpg" alt=""></p>
+<p>将原内容：<br><strong>GRUB_CMDLINE_LINUX_DEFAULT=”quiet”</strong><br>改为<br><strong>GRUB_CMDLINE_LINUX_DEFAULT=”quiet intel_iommu=on video=efifb:off”</strong>(我的是intel的cpu，如果你用amd，把intel改成amd)<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9plqfch3j30sy17wqbm.jpg" alt=""></p>
 <p>然后就可以更新这个grub文件了</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">update-grub</span></span><br></pre></td></tr></table></figure>
-<p>找到文件  /etc/modules （如果系统没有此文件，则自己建立一个）加上以下代码，每个一行：<br>vfio<br>vfio_iommu_type1<br>vfio_pci<br>vfio_virqfd</p>
+<p>找到文件  /etc/modules （如果系统没有此文件，则自己建立一个）加上以下代码，每个一行：<br><strong>vfio<br>vfio_iommu_type1<br>vfio_pci<br>vfio_virqfd</strong></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi <span class="regexp">/etc/m</span>odules</span><br></pre></td></tr></table></figure>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9pt496g2j30om09qt9p.jpg" alt=""></p>
 <h6 id="2-建立驱动黑名单，在ssh下输入以下命令："><a href="#2-建立驱动黑名单，在ssh下输入以下命令：" class="headerlink" title="2.建立驱动黑名单，在ssh下输入以下命令："></a>2.建立驱动黑名单，在ssh下输入以下命令：</h6><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist snd_hda_intel"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist snd_hda_codec_hdmi"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist i915"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist radeon"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist nouveau"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>echo <span class="string">"blacklist nvidia"</span> &gt;&gt; <span class="regexp">/etc/modprobe</span>.d/pve-blacklist.conf</span><br><span class="line"><span class="variable">$ </span>update-initramfs -u <span class="comment">#更新</span></span><br></pre></td></tr></table></figure>
 <h6 id="3-GPU信息确认"><a href="#3-GPU信息确认" class="headerlink" title="3.GPU信息确认"></a>3.GPU信息确认</h6><p>在ssh下输入命令</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>lspci</span><br></pre></td></tr></table></figure>
-<p>输入这个命令之后，我们可以看到我们的机器下所有的设备编号，这边我的编号是00:02(一般vga开头的基本就可以确定这是显示设备)<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9q8xmv4qj31840fewl9.jpg" alt=""><br>再输入命令，得到vendor IDs   </p>
+<p>输入这个命令之后，我们可以看到我们的机器下所有的设备编号，这边我的编号是<strong>00:02</strong>(一般vga开头的基本就可以确定这是显示设备)<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9q8xmv4qj31840fewl9.jpg" alt=""><br>再输入命令，得到vendor IDs   </p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lspci -n -s <span class="number">00</span>:<span class="number">02</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9qckm7fmj30g401kmxb.jpg" alt=""></p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>echo <span class="string">"options vfio-pci ids=8086:3e98"</span> &gt; <span class="regexp">/etc/modprobe</span>.d/vfio.conf</span><br></pre></td></tr></table></figure>
-<h6 id="4-创建win10虚拟机"><a href="#4-创建win10虚拟机" class="headerlink" title="4.创建win10虚拟机"></a>4.创建win10虚拟机</h6><p>创建Win10虚拟机，先不要启动运行<br>这时候需要注意事项：<br>                （1） 用SCSI VirtIO, VirtIO网络和 balloon虚拟设备（SCSI非必须），最新版的win10支持sata的硬盘格式，不用另外安装驱动就可以使用。<br>                （2） 显示设备为默认即可。<br>                （3） 启动BIOS改为OVMF，添加efi磁盘<br>                （4） machine: 可以是q35也可以是默认的，如果是独显直通，建议用q35。<br>                （5） 此时不要添加pci设备，因为如果你现在直接添加了pci设备直通，很有可能导致无法开机或者开机了，你在vnc上看不到任何画面。<br>                （6） 还有需要下载virtio-win的iso驱动包<a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/上传至pve然后添加到刚才创建的win10虚拟机上。" target="_blank" rel="noopener">https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/上传至pve然后添加到刚才创建的win10虚拟机上。</a><br>                （7）此时启动win10虚拟机，各种设置，如果无法识别驱动，用virtio-win驱动包安装即可。此时你可以开启win10自带的远程桌面，也可以去下载远程工具安装好。例如：teamview等等之类的软件。<br>                （8）然后关机</p>
+<h6 id="4-创建win10虚拟机"><a href="#4-创建win10虚拟机" class="headerlink" title="4.创建win10虚拟机"></a>4.创建win10虚拟机</h6><p>创建Win10虚拟机，先不要启动运行<br>这时候需要注意事项：<br>                （1） 用SCSI VirtIO, VirtIO网络和 balloon虚拟设备（SCSI非必须），最新版的win10支持sata的硬盘格式，不用另外安装驱动就可以使用。<br>                （2） 显示设备为默认即可。<br>                （3） 启动BIOS改为OVMF，添加efi磁盘<br>                （4） machine: 可以是q35也可以是默认的，如果是独显直通，建议用q35。<br>                （5） 此时不要添加pci设备，因为如果你现在直接添加了pci设备直通，很有可能导致无法开机或者开机了，你在vnc上看不到任何画面。<br>                （6） 还有需要下载virtio-win的iso驱动包<a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/" target="_blank" rel="noopener">https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/</a> 上传至pve然后添加到刚才创建的win10虚拟机上。<br>                （7）此时启动win10虚拟机，各种设置，如果无法识别驱动，用virtio-win驱动包安装即可。此时你可以开启win10自带的远程桌面，也可以去下载远程工具安装好。例如：teamview等等之类的软件。<br>                （8）然后关机</p>
 <h6 id="5-添加pci设备直通核显"><a href="#5-添加pci设备直通核显" class="headerlink" title="5.添加pci设备直通核显"></a>5.添加pci设备直通核显</h6><p>在win10虚拟机的硬件选项这边添加pci设备<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9qte3bhdj309o0f6myd.jpg" alt=""><br>选择编号，之前我们知道我们的核显编号是00:02，添加<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9qul9wdcj31i60p2tdh.jpg" alt=""><br>选项如果选择q35，全部勾选即可，如果选择默认，除了pci-express以外，全部勾选即可。<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9qxl196fj30xo0b8gmo.jpg" alt=""></p>
 <p>然后我们开机，稍微等一会，win10就自动帮我装好了驱动，识别到了核显。<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9r01f5atj312u0u04dn.jpg" alt=""><br>搞定收工！！！！！！</p>
-<h6 id="我的设备一览"><a href="#我的设备一览" class="headerlink" title="我的设备一览"></a>我的设备一览</h6><p>主板：华擎b365m-itx<br>cpu：i9-9900T</p>
+<h6 id="我的设备一览"><a href="#我的设备一览" class="headerlink" title="我的设备一览"></a>我的设备一览</h6><p><strong>主板：华擎b365m-itx<br>cpu：i9-9900T</strong></p>
+<p>本文参照：<a href="https://koolshare.cn/thread-158939-3-1.html" target="_blank" rel="noopener">https://koolshare.cn/thread-158939-3-1.html</a><br>        <a href="http://www.nasyun.com/thread-67478-1-1.html" target="_blank" rel="noopener">http://www.nasyun.com/thread-67478-1-1.html</a></p>
 
     </div>
 
