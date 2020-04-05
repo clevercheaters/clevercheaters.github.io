@@ -189,6 +189,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.llowoll.com/2020/04/06/vps%E5%AE%89%E8%A3%85shadowsocks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/L-128x.png">
+      <meta itemprop="name" content="llowoll">
+      <meta itemprop="description" content="懒懒散散，大闲人一枚！！！！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="llowo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/06/vps%E5%AE%89%E8%A3%85shadowsocks/" class="post-title-link" itemprop="url">vps安装shadowsocks</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-06 00:24:00 / 修改时间：00:44:49" itemprop="dateCreated datePublished" datetime="2020-04-06T00:24:00+08:00">2020-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">虚拟机</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>722</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="Linux安装shadowsocks（这边只做centos安装shadowsocks）"><a href="#Linux安装shadowsocks（这边只做centos安装shadowsocks）" class="headerlink" title="Linux安装shadowsocks（这边只做centos安装shadowsocks）"></a>Linux安装shadowsocks（这边只做centos安装shadowsocks）</h5><p>这边不做图文参考，请见谅，不过操作都很简单，跟着步骤来就行。<br>一个刚安装系统的vps虚拟机，缺少一部分安装的必要条件。</p>
+<h6 id="1-安装-wegt："><a href="#1-安装-wegt：" class="headerlink" title="1.安装 wegt："></a>1.安装 wegt：</h6><pre><code>$ yum -y install wget</code></pre><h6 id="2-安装shadowsckes："><a href="#2-安装shadowsckes：" class="headerlink" title="2.安装shadowsckes："></a>2.安装shadowsckes：</h6><pre><code>$ wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</code></pre><h6 id="3-运行shadowsocks脚本："><a href="#3-运行shadowsocks脚本：" class="headerlink" title="3.运行shadowsocks脚本："></a>3.运行shadowsocks脚本：</h6><pre><code>$ bash shadowsocks-all.sh</code></pre><p>根据提示设置端口，密码，加密方式等等之类的操作。<br>做完上述操作后，我们的shadowsocks就算安装完毕了，一般的vps都自带bbr加速，我们也可以自己去更改bbr，或者魔改bbr，再或者用锐速，懂的人自然知道，就连油管和网飞的4k也不再话下。所以接下来我们就需要去安装bbr的脚本了，脚本不是本人提供的。</p>
+<h6 id="4-安装bbr-脚本："><a href="#4-安装bbr-脚本：" class="headerlink" title="4.安装bbr 脚本："></a>4.安装bbr 脚本：</h6><pre><code>$ wget -N --no-check-certificate &quot;https://raw.githubusercontent.com/dlxg/Linux-NetSpeed/master/tcp.sh</code></pre><h6 id="5-赋权给tcp-sh："><a href="#5-赋权给tcp-sh：" class="headerlink" title="5.赋权给tcp.sh："></a>5.赋权给tcp.sh：</h6><pre><code>$ chmod +x tcp.sh </code></pre><h6 id="6-运行bbr脚本："><a href="#6-运行bbr脚本：" class="headerlink" title="6.运行bbr脚本："></a>6.运行bbr脚本：</h6><pre><code>$ bash tcp.sh</code></pre><h6 id="7-先选择升级bbr脚本：选择0"><a href="#7-先选择升级bbr脚本：选择0" class="headerlink" title="7.先选择升级bbr脚本：选择0"></a>7.先选择升级bbr脚本：选择0</h6><h6 id="8-然后根据自己需要安装自己需要的bbr。。。。然后重启一下。"><a href="#8-然后根据自己需要安装自己需要的bbr。。。。然后重启一下。" class="headerlink" title="8.然后根据自己需要安装自己需要的bbr。。。。然后重启一下。"></a>8.然后根据自己需要安装自己需要的bbr。。。。然后重启一下。</h6><p>需要注意的是重启后会导致bbr失效，再重新运行一下上述步骤6的操作，重新启动bbr加速。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.llowoll.com/2020/03/28/pve%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9B%B4%E9%80%9A%E6%98%BE%E5%8D%A1%EF%BC%88%E6%A0%B8%E6%98%BE%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -456,20 +540,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -518,13 +602,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">2k</span>
+    <span title="站点总字数">3k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2 分钟</span>
+    <span title="站点阅读时长">3 分钟</span>
 </div>
 
         
