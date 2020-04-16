@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-16 21:45:00 / 修改时间：21:50:46" itemprop="dateCreated datePublished" datetime="2020-04-16T21:45:00+08:00">2020-04-16</time>
+              <time title="创建时间：2020-04-16 21:45:00 / 修改时间：21:53:58" itemprop="dateCreated datePublished" datetime="2020-04-16T21:45:00+08:00">2020-04-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -385,7 +385,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-16 21:45:25" itemprop="dateModified" datetime="2020-04-16T21:45:25+08:00">2020-04-16</time>
+                <time title="修改时间：2020-04-16 21:53:23" itemprop="dateModified" datetime="2020-04-16T21:53:23+08:00">2020-04-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -403,7 +403,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -423,7 +423,7 @@
 
       
           <p>pve的直通教程，其实适用于支持pci设备的各种直通，包括声卡、网卡、显卡，只是在设置上面会有所不同，这里主要讲的是pve的核显直通，独显直通也可以依照这个教程来做。</p>
-<h2 id="请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇："><a href="#请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：" class="headerlink" title="请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇："></a>请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：</h2><p>具体步骤：</p>
+<h5 id="请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：http-www-llowoll-com-2020-04-16-直通后主机无法启动"><a href="#请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：http-www-llowoll-com-2020-04-16-直通后主机无法启动" class="headerlink" title="请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：http://www.llowoll.com/2020/04/16/直通后主机无法启动/"></a>请一定要注意一件事，直通后有大概率会直接让pve主机启动不起来，具体解决请看这一篇：<a href="http://www.llowoll.com/2020/04/16/直通后主机无法启动/">http://www.llowoll.com/2020/04/16/直通后主机无法启动/</a></h5><p>具体步骤：</p>
 <h6 id="1-PVE的内核开启支持VD-T直通的IOMMU及相关模块"><a href="#1-PVE的内核开启支持VD-T直通的IOMMU及相关模块" class="headerlink" title="1.PVE的内核开启支持VD-T直通的IOMMU及相关模块"></a>1.PVE的内核开启支持VD-T直通的IOMMU及相关模块</h6><p>这里不做具体的进入pve的介绍，shell工具有很多，自己去用用看就知道哪个好了！！！<br>修改文件位于：/etc/default/grub</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/<span class="keyword">default</span>/grub <span class="meta">#进入grub文件编辑</span></span><br></pre></td></tr></table></figure>
 <p>将原内容：<br><strong>GRUB_CMDLINE_LINUX_DEFAULT=”quiet”</strong><br>改为<br><strong>GRUB_CMDLINE_LINUX_DEFAULT=”quiet intel_iommu=on video=efifb:off”</strong>(我的是intel的cpu，如果你用amd，把intel改成amd)<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd9plqfch3j30sy17wqbm.jpg" alt=""></p>
