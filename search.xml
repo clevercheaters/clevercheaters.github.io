@@ -14,8 +14,8 @@
 vfio_iommu_type1
 vfio_pci
 vfio_virqfd</code></pre><p>   （3）最关键的是进入 /etc/pve/qemu-server 找到需要更改的虚拟机标识号，例如：103<br>   那我们就：</p>
-<pre><code>vi /etc/pve/qemu-server/103.conf</code></pre><p>   找到其中pci：00:02等等字样的，删除那一行即可</p>
-]]></content>
+<pre><code>vi /etc/pve/qemu-server/103.conf</code></pre><p>   找到其中pci：00:02等等字样的，删除那一行即可。<br>   最后我们重启一下。</p>
+<pre><code>reboot</code></pre>]]></content>
       <categories>
         <category>pve虚拟机</category>
       </categories>
