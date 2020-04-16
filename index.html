@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-16 21:45:00 / 修改时间：21:53:58" itemprop="dateCreated datePublished" datetime="2020-04-16T21:45:00+08:00">2020-04-16</time>
+              <time title="创建时间：2020-04-16 21:45:00 / 修改时间：22:16:50" itemprop="dateCreated datePublished" datetime="2020-04-16T21:45:00+08:00">2020-04-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pve/" itemprop="url" rel="index"><span itemprop="name">pve</span></a>
+                  <a href="/categories/pve%E8%99%9A%E6%8B%9F%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">pve虚拟机</span></a>
                 </span>
             </span>
 
@@ -232,7 +232,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>140</span>
+              <span>769</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -251,7 +251,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="在直通核显之后，会有大概率启动不起来。诸如卡在recovering-journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。"><a href="#在直通核显之后，会有大概率启动不起来。诸如卡在recovering-journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。" class="headerlink" title="在直通核显之后，会有大概率启动不起来。诸如卡在recovering journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。"></a>在直通核显之后，会有大概率启动不起来。诸如卡在recovering journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。</h3><h5 id="1-我们需要知道的是，你直通的虚拟机是哪一台"><a href="#1-我们需要知道的是，你直通的虚拟机是哪一台" class="headerlink" title="1.我们需要知道的是，你直通的虚拟机是哪一台"></a>1.我们需要知道的是，你直通的虚拟机是哪一台</h5><h5 id="2-需要知道你对pve改动了哪些配置"><a href="#2-需要知道你对pve改动了哪些配置" class="headerlink" title="2.需要知道你对pve改动了哪些配置"></a>2.需要知道你对pve改动了哪些配置</h5><h5 id="3-如何进入无法启动的虚拟机里来进行改动还原的操作"><a href="#3-如何进入无法启动的虚拟机里来进行改动还原的操作" class="headerlink" title="3.如何进入无法启动的虚拟机里来进行改动还原的操作"></a>3.如何进入无法启动的虚拟机里来进行改动还原的操作</h5>
+          <h3 id="在直通核显之后，会有大概率启动不起来。诸如卡在recovering-journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。"><a href="#在直通核显之后，会有大概率启动不起来。诸如卡在recovering-journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。" class="headerlink" title="在直通核显之后，会有大概率启动不起来。诸如卡在recovering journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。"></a>在直通核显之后，会有大概率启动不起来。诸如卡在recovering journal或者clean处被卡住，还有就是无法initram等等莫名其妙的问题。</h3><h5 id="1-我们需要知道的是，你直通的虚拟机是哪一台"><a href="#1-我们需要知道的是，你直通的虚拟机是哪一台" class="headerlink" title="1.我们需要知道的是，你直通的虚拟机是哪一台"></a>1.我们需要知道的是，你直通的虚拟机是哪一台</h5><p>   这个比较好理解，比如你在标识为103的虚拟机上进行了直通核显的操作，那待会还原操作的时候，我们也只需要对该虚拟机还原就行，其余不必去动。</p>
+<h5 id="2-如何进入无法启动的虚拟机里来进行改动还原的操作"><a href="#2-如何进入无法启动的虚拟机里来进行改动还原的操作" class="headerlink" title="2.如何进入无法启动的虚拟机里来进行改动还原的操作"></a>2.如何进入无法启动的虚拟机里来进行改动还原的操作</h5><p>   实际情况，我们需要去制作pve启动盘，具体制作流程可以百度pve安装教程，进入pve安装的界面的时候。我们不要去选择第一个（已经用红色框裱出），具体选择黑色框中的选项。<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdvyu192xmj30yy0j877q.jpg" alt="">其中的rescue boot选项，我们可以绕过原本的启动方式，然后以平常的方式对pve进行配置文件的改动了。</p>
+<h5 id="3-需要知道你对pve改动了哪些配置"><a href="#3-需要知道你对pve改动了哪些配置" class="headerlink" title="3.需要知道你对pve改动了哪些配置"></a>3.需要知道你对pve改动了哪些配置</h5><p>   我们在之前的直通操作，大致就是将pci设置分离，然后单独直通给某个独立的虚拟机。<br>    （1）我们对 /etc/default/grub 文件进行了改动，这时候我们需要将原内容：</p>
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT=”quiet intel_iommu=on video=efifb:off”
+#(我的是intel的cpu，如果你用amd，把intel改成amd)</code></pre><p>改为</p>
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT=”quiet”</code></pre><p>其实就是之前的反向操作。然后更新</p>
+<pre><code>update-grub</code></pre><p>   （2）找到文件 /etc/modules 编辑，并且删除下面：</p>
+<pre><code>vfio
+vfio_iommu_type1
+vfio_pci
+vfio_virqfd</code></pre><p>   （3）最关键的是进入 /etc/pve/qemu-server 找到需要更改的虚拟机标识号，例如：103<br>   那我们就：</p>
+<pre><code>vi /etc/pve/qemu-server/103.conf</code></pre><p>   找到其中pci：00:02等等字样的，删除那一行即可</p>
+
       
     </div>
 
@@ -629,7 +641,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -684,7 +696,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
